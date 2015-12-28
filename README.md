@@ -8,4 +8,4 @@ A chrome extension that sends you desktop notifications for new music on Soundcl
 2. Go to "Chrome://Extensions"
 3. Make sure developer mode is checked in the top right corner
 4. Click "Load unpacked extension" and select the zip file
-5. Go to the options window to add words to the list
+5. Go to the options window to add account names to keep track of
