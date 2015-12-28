@@ -1,0 +1,25 @@
+{
+	"manifest_version": 2,
+
+	"name": "Soundcloud Notifications",
+	"description": "Get soundcloud notifications when new music is uploaded",
+	"options_page": "settings.html",
+	"version": "1.0",
+
+	"permissions": [
+		"notifications",
+		"storage",
+		"alarms",
+		"tabs"
+	],
+
+	"icons": {
+		"48": "sc48.png",
+		"128": "sc128.png"
+	},
+
+	"background": {
+		"scripts": ["jquery.min.js", "parse.js", "sdk-3.0.0.js", "notifs.js"]
+	}
+
+}
