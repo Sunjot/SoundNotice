@@ -1,8 +1,9 @@
 $(document).ready(function () {
 
-	var CLIENTID = ;
+	var CLIENTID = '';
 	var idList = [];
 	var accountList = [];
+	var clickURL = "";
 
 	// initialize the client
 	SC.initialize({
@@ -41,7 +42,8 @@ $(document).ready(function () {
 				// ensure that the track hasn't already been checked and was posted within past 24h
 				if (checkID(tracks[0].id) == false && checkPostTime(tracks[0].created_at) == true) {
 
-					sendNotif(tracks[0].title); // create notification 
+					clickURL = tracks[0].permalink_url;
+					sendNotif(tracks[0].user.username, tracks[0].title); // create notification 
 					addID(tracks[0].id); // add the id to list of ids checked
 
 				}
@@ -107,15 +109,15 @@ $(document).ready(function () {
 	// go to the given URL when a user clicks on the notification window 
 	chrome.notifications.onClicked.addListener(function() {
 
-		chrome.tabs.create({url: "http://soundcloud.com"});
+		chrome.tabs.create({url: clickURL});
 	});
 
 	// create a notification object with the required properties 
-	function sendNotif(tracktitle) {
+	function sendNotif(trackartist, tracktitle) {
 
 		var opt = {
 			type: "basic",
-			title: "Soundcloud Notification",
+			title: trackartist,
 			message: tracktitle,
 			iconUrl: "sc.png",
 		};
