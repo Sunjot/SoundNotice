@@ -119,7 +119,7 @@ $(document).ready(function () {
 			type: "basic",
 			title: trackartist,
 			message: tracktitle,
-			iconUrl: "sc.png",
+			iconUrl: "/images/sc.png",
 		};
 
 		// creates and displays the notification

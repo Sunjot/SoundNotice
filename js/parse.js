@@ -61,8 +61,6 @@ $(document).ready(function () {
 		}
 	}, ".remove");
 
-});
-
 	// when the add button is clicked
 	$("#add").click(function(){
 

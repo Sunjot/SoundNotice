@@ -14,12 +14,12 @@
 	],
 
 	"icons": {
-		"48": "sc48.png",
-		"128": "sc128.png"
+		"48": "/images/sc48.png",
+		"128": "/images/sc128.png"
 	},
 
 	"background": {
-		"scripts": ["jquery.min.js", "parse.js", "sdk-3.0.0.js", "notifs.js"]
+		"scripts": ["/js/jquery.min.js", "/js/parse.js", "/js/sdk-3.0.0.js", "/js/notifs.js"]
 	}
 
 }
