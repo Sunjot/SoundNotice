@@ -20,6 +20,49 @@ $(document).ready(function () {
 		$('#remove').fadeTo('fast', 0.85)
 	});
 
+	/* Change opacity when mouse hovers over a list item */
+	$('#list').on({
+		mouseenter: function() {
+			var id = '#' + this.id;
+			$(id).fadeTo('fast', 1);
+		},
+		mouseleave: function() {
+			var id = '#' + this.id;
+			$(id).fadeTo('fast', 0.7);
+		}
+	}, ".parent");
+
+	/* Change opacity when mouse hovers over the list 'x' button */
+	$('#list').on({
+		mouseenter: function() {
+			var id = '#' + this.id;
+			$(id).fadeTo('fast', 1);
+		},
+		mouseleave: function() {
+			var id = '#' + this.id;
+			$(id).fadeTo('fast', 0.5);
+		},
+		click: function() {
+			var id = '#' + $(this).parent().attr('id');
+			var word = $('#list ' + id + ' .keyword').html();
+			$(id).remove();	
+
+			var tempList = [];
+			for (var i = 0; i < list.length; i++) {
+				if (list[i] != word) {
+					tempList.push(list[i]);
+				}
+			}
+
+			list = tempList;
+			chrome.storage.sync.set({
+				'accounts': tempList
+			});			
+		}
+	}, ".remove");
+
+});
+
 	// when the add button is clicked
 	$("#add").click(function(){
 
@@ -34,7 +77,6 @@ $(document).ready(function () {
 			var arr = [account];
 			addToList(arr);
 			document.getElementById('keywordbox').value = "";
-			id++;
 
 			// store the updated list of keywords
 			list.push(account);
@@ -48,23 +90,28 @@ $(document).ready(function () {
 	// when the remove all button is clicked
 	$("#remove").click(function(){
 
-		list = [];
+		if (confirm('Are you sure you want to clear the list?')) {
 
-		// empty the stored keywords and ids lists
-		chrome.storage.sync.set({
-			'accounts': list
-		});
+			list = [];
+			id = 1;
 
-		// clear the list on the page
-		$('#list div').remove();
+			// empty the stored keywords and ids lists
+			chrome.storage.sync.set({
+				'accounts': list
+			});
+
+			// clear the list on the page
+			$('#list div').remove();
+		}
 
 	});
 
 	// Display the keyword(s) on the page 
 	function addToList(arr) {
 		for (var i = 0; i < arr.length; i++){
-			$("#list").append('<div id="' + id.toString() + '"><span class="keyword">' + arr[i] + 
-				'</span></div>');
+			$("#list").append('<div class="parent" id="' + id.toString() + '"><span class="keyword" id="k' + id.toString() + '">' + arr[i] + 
+				'</span><span class="remove" id="r' + id.toString() + '">x</span></div>');
+			id++;
 		}
 	}
 
