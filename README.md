@@ -1,4 +1,4 @@
-# Soundcloud Notifications
+# Sound Notice
 
 A chrome extension that sends you desktop notifications for new music on Soundcloud. You choose accounts to keep track of, and the extension periodically checks for new music under those account names. If something shows up, it sends you a notification with the title of the track. 
 
